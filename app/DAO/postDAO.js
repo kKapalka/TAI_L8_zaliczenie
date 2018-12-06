@@ -34,7 +34,7 @@ function get(id) {
 }
 
 function createNewOrUpdate(data) {
-    return Promise.resolve().then(() => {
+
         if (!data.id) {
             return new PostModel(data).save().then(result => {
                 if (result[0]) {
@@ -44,13 +44,7 @@ function createNewOrUpdate(data) {
         } else {
             return PostModel.findOneAndUpdate(data.id, _.omit(data, 'id'), {new: true});
         }
-    }).catch(error => {
-        if ('ValidationError' === error.name) {
-            error = error.errors[Object.keys(error.errors)[0]];
-            throw applicationException.new(applicationException.BAD_REQUEST, error.message);
-        }
-        throw error;
-    });
+
 }
 
 
