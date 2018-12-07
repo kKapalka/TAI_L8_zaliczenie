@@ -33,18 +33,24 @@ function get(id) {
     });
 }
 
-function createNewOrUpdate(data) {
-
-        if (!data.id) {
-            return new PostModel(data).save().then(result => {
+function createNewOrUpdate(post) {
+    return Promise.resolve().then(() => {
+        if (!post.id) {
+            return new PostModel(post).save().then(result => {
                 if (result[0]) {
                     return mongoConverter(result[0]);
                 }
             });
         } else {
-            return PostModel.findOneAndUpdate(data.id, _.omit(data, 'id'), {new: true});
+            return PostModel.findByIdAndUpdate(post.id, _.omit(post, 'id'), { new: true });
         }
-
+    }).catch(error => {
+        if ('ValidationError' === error.name) {
+            error = error.errors[Object.keys(error.errors)[0]];
+            throw applicationException.new(applicationException.BAD_REQUEST, error.message);
+        }
+        throw error;
+    });
 }
 
 
