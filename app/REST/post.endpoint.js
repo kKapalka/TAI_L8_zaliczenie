@@ -4,7 +4,7 @@ import business from '../business/business.container';
 import applicationException from '../service/applicationException';
 
 const postEndpoint = (router) => {
-    router.get('/posts', async (request, response, next) => {
+    router.get('/api/posts', async (request, response, next) => {
         try {
             let result = await business(request).getPostManager().query();
             response.status(200).send(result);
@@ -13,7 +13,7 @@ const postEndpoint = (router) => {
         }
     });
 
-    router.get('/posts/:id', async (request, response, next) => {
+    router.get('/api/posts/:id', async (request, response, next) => {
         try {
             let result = await business(request).getPostManager().get(request.params.id);
             response.status(200).send(result);
@@ -22,7 +22,7 @@ const postEndpoint = (router) => {
         }
     });
 
-    router.post('/posts', async (request, response, next) => {
+    router.post('/api/posts', async (request, response, next) => {
         try {
             console.log(request.body);
             let result = await business(request).getPostManager().createNewOrUpdate(request.body);
@@ -32,7 +32,7 @@ const postEndpoint = (router) => {
         }
     });
 
-    router.post('/posts/:id', async (request, response, next) => {
+    router.post('/api/posts/:id', async (request, response, next) => {
         try {
             console.log(request.body);
             let result = await business(request).getPostManager().createNewOrUpdate(request.body);
