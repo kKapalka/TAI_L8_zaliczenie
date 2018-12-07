@@ -17,7 +17,7 @@ const userEndpoint = (router) => {
         }
     });
 
-    router.post('api/user/create', async (request, response, next) => {
+    router.post('/api/user/create', async (request, response, next) => {
         try {
             let result = await business(request).getUserManager(request).createNewOrUpdate(request.body);
             response.status(200).send(result);
@@ -26,7 +26,7 @@ const userEndpoint = (router) => {
         }
     });
 
-    router.delete('api/user/logout/:id', auth, async (request, response, next) => {
+    router.delete('/api/user/logout/:id', auth, async (request, response, next) => {
         try {
             let result = await business(request).getUserManager(request).removeHashSession(request.body.id);
             response.status(200).send(result);

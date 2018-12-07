@@ -5,7 +5,6 @@ import TokenDAO from '../DAO/tokenDAO';
 import UserDAO from '../DAO/userDAO';
 import applicationException from '../service/applicationException';
 import sha1 from 'sha1';
-import * as mailSender from "rxjs";
 
 function create(context) {
 
@@ -40,14 +39,15 @@ function create(context) {
     async function createNewOrUpdate(userData) {
         userData.activationHash = hashString(Date.now().toString());
         const user = await UserDAO.createNewOrUpdate(userData);
-        if (await userData.password) {
-            const email = {
-                to: user.email,
-                subject: messages.ACTIVATION,
-                message: messages.MESSAGE,
-                hash: user.activationHash
-            };
-            await mailSender.send(email, true);
+        console.log(user);
+         if (await userData.password) {
+        //     const email = {
+        //         to: user.email,
+        //         subject: messages.ACTIVATION,
+        //         message: messages.MESSAGE,
+        //         hash: user.activationHash
+        //     };
+            //await mailSender.send(email, true);
             return await PasswordDAO.createOrUpdate({userId: user.id, password: hashString(userData.password)});
         } else {
             return user;
