@@ -251,7 +251,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container-fluid\">\n  <form class=\"custom-form\" [formGroup]=\"profileForm\" (submit)=\"onSubmit()\">\n    <div class=\"form-group\">\n      <label for=\"title\">Tytuł</label>\n      <input type=\"text\" class=\"form-control\" id=\"title\" placeholder=\"Tytuł\" formControlName=\"title\">\n      <div *ngIf=\"profileForm.get('title').touched && profileForm.get('title').invalid\" class=\"alert alert-danger\" required=\"\"> Musisz podać tytuł</div>\n\n      <label for=\"url\">Link do obrazka</label>\n      <input type=\"text\" class=\"form-control\" id=\"url\" placeholder=\"Obrazek\" formControlName=\"url\">\n      <div *ngIf=\"profileForm.get('url').touched && profileForm.get('url').invalid\" class=\"alert alert-danger\" required=\"\"> Musisz wstawić link do obrazka</div>\n\n      <label for=\"content\">Treść</label>\n      <textarea class=\"form-control\" rows=\"8\" placeholder=\"Opis\" id=\"content\" required formControlName=\"content\"></textarea>\n      <div *ngIf=\"profileForm.get('content').touched && profileForm.get('content').invalid\" class=\"alert alert-danger\" required=\"\"> Musisz podać treść artykułu</div>\n    </div>\n    <button type=\"reset\" class=\"btn btn-primary\">Wyczyść</button>\n    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"profileForm.invalid\">Wyślij</button>\n  </form>\n</div>\n"
+module.exports = "\r\n<div class=\"container-fluid\">\r\n  <form class=\"custom-form\" [formGroup]=\"profileForm\" (submit)=\"onSubmit()\">\r\n    <div class=\"form-group\">\r\n      <label for=\"title\">Tytuł</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"title\" placeholder=\"Tytuł\" formControlName=\"title\">\r\n      <div *ngIf=\"profileForm.get('title').touched && profileForm.get('title').invalid\" class=\"alert alert-danger\" required=\"\"> Musisz podać tytuł</div>\r\n\r\n      <label for=\"url\">Link do obrazka</label>\r\n      <input type=\"text\" class=\"form-control\" id=\"url\" placeholder=\"Obrazek\" formControlName=\"url\">\r\n      <div *ngIf=\"profileForm.get('url').touched && profileForm.get('url').invalid\" class=\"alert alert-danger\" required=\"\"> Musisz wstawić link do obrazka</div>\r\n\r\n      <label for=\"content\">Treść</label>\r\n      <textarea class=\"form-control\" rows=\"8\" placeholder=\"Opis\" id=\"content\" required formControlName=\"content\"></textarea>\r\n      <div *ngIf=\"profileForm.get('content').touched && profileForm.get('content').invalid\" class=\"alert alert-danger\" required=\"\"> Musisz podać treść artykułu</div>\r\n    </div>\r\n    <button type=\"reset\" class=\"btn btn-primary\">Wyczyść</button>\r\n    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"profileForm.invalid\">Wyślij</button>\r\n  </form>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -292,7 +292,9 @@ var BlogCreateComponent = /** @class */ (function () {
     BlogCreateComponent.prototype.ngOnInit = function () {
     };
     BlogCreateComponent.prototype.onSubmit = function () {
-        this.service.savePost(this.profileForm.value);
+        this.service.savePost(this.profileForm.value).subscribe(function (res) {
+            console.log(res.data);
+        });
     };
     BlogCreateComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1343,7 +1345,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var PostServiceService = /** @class */ (function () {
     function PostServiceService(httpClient) {
         this.http = httpClient;
-        this.host = "";
+        this.host = "http://localhost:3000/api";
     }
     PostServiceService.prototype.getAll = function () {
         return this.http.get(this.host + "/posts");
@@ -1352,6 +1354,7 @@ var PostServiceService = /** @class */ (function () {
         return this.http.get(this.host + "/posts/" + id);
     };
     PostServiceService.prototype.savePost = function (body) {
+        console.log(body);
         return this.http.post("/posts", body);
     };
     PostServiceService = __decorate([
@@ -1428,7 +1431,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\kkapa\Desktop\TAI_L7\blog\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\student\Desktop\TAI_L8_zaliczenie\blog\src\main.ts */"./src/main.ts");
 
 
 /***/ })

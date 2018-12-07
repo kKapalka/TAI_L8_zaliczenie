@@ -539,7 +539,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\kkapa\Desktop\TAI_L7\blog\src\styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! C:\Users\student\Desktop\TAI_L8_zaliczenie\blog\src\styles.css */"./src/styles.css");
 
 
 /***/ })
