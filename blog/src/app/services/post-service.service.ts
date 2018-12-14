@@ -23,6 +23,6 @@ export class PostServiceService {
   }
   public savePost(body):any{
     console.log(body);
-    return this.http.post("/posts",body);
+    return this.http.post(this.host+"/posts",body);
   }
 }

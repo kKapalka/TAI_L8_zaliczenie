@@ -1355,7 +1355,7 @@ var PostServiceService = /** @class */ (function () {
     };
     PostServiceService.prototype.savePost = function (body) {
         console.log(body);
-        return this.http.post("/posts", body);
+        return this.http.post(this.host + "/posts", body);
     };
     PostServiceService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -1431,7 +1431,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\student\Desktop\TAI_L8_zaliczenie\blog\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\kkapa\Desktop\TAI_L8_zaliczenie\blog\src\main.ts */"./src/main.ts");
 
 
 /***/ })

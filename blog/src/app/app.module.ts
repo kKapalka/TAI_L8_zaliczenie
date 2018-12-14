@@ -46,11 +46,6 @@ const appRoutes: Routes = [
   {
     path: 'blog/details/:id',
     component: BlogItemDetailComponent,
-    data : {article : {
-      title:"temp",
-        text:"temp",
-        image:"temp"
-      }}
   }]
 
 

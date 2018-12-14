@@ -24,7 +24,6 @@ const postEndpoint = (router) => {
 
     router.post('/api/posts', async (request, response, next) => {
         try {
-            console.log(request.body);
             let result = await business(request).getPostManager().createNewOrUpdate(request.body);
             response.status(200).send(result);
         } catch (error) {
