@@ -33,12 +33,12 @@ function createNewOrUpdate(user) {
     return Promise.resolve().then(() => {
         if (!user.id) {
             return new UserModel(user).save().then(result => {
-                if (result[0]) {
-                    return mongoConverter(result[0]);
+                if (result) {
+                    return mongoConverter(result);
                 }
             });
         } else {
-            return UserModel.findByIdAndUpdate(user.id, _.omit(user, 'id'), {new: true});
+            return UserModel.findOneAndUpdate(user.id, _.omit(user, 'id'), {new: true});
         }
     }).catch(error => {
         if ('ValidationError' === error.name) {

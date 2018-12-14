@@ -2,13 +2,12 @@
 
 import business from '../business/business.container';
 import applicationException from '../service/applicationException';
-
-const admin = require("../middleware/admin");
+import admin from "../middleware/admin";
 
 import auth from "../middleware/auth";
 
 const userEndpoint = (router) => {
-    router.post('/api/user/auth', auth, async (request, response, next) => {
+    router.post('/api/user/auth', async (request, response, next) => {
         try {
             let result = await business(request).getUserManager(request).authenticate(request.body.login,request.body.password);
             response.status(200).send(result);
